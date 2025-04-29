@@ -1,0 +1,76 @@
+import { HttpClient } from '@angular/common/http';
+import { Component, inject, signal } from '@angular/core';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { single } from 'rxjs';
+
+@Component({
+  selector: 'app-login',
+  imports: [FormsModule,ReactiveFormsModule],
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css'
+})
+export class LoginComponent {
+
+  showRegisterForm = signal<boolean>(false);
+  http = inject(HttpClient);
+  router =inject(Router);
+  
+ customObj: any ={
+  "userId": 0,
+  "userName": "",
+  "emailId": "",
+  "fullName": "",
+  "password": ""
+ };
+
+ loginForm: FormGroup = new FormGroup({
+  userName: new FormControl(""),
+  password:new FormControl("")
+
+ })
+ 
+
+  changeView(){
+    this.showRegisterForm.set(!this.showRegisterForm());
+  }
+
+  onRegister(){
+    debugger;
+this.http.post("https://projectapi.gerasim.in/api/EmployeeManagement/login",this.customObj).subscribe((res:any)=>{
+  debugger;
+if(res.result){
+  alert("login Success");
+}
+else{
+  alert(res.message)
+}
+},error=>{
+alert("network error")
+})
+  }
+
+  login(){
+    debugger;
+    const fromValue = this.loginForm.value
+this.http.post("https://projectapi.gerasim.in/api/EmployeeManagement/login",this.customObj).subscribe((res:any)=>{
+  debugger;
+if(res.result){
+  
+  sessionStorage.setItem("bankUser",JSON.stringify(res.data));
+  this.router.navigateByUrl("dashboard")
+}
+else{
+  alert(res.message)
+}
+},error=>{
+alert("network error")
+})
+  }
+
+
+
+
+ 
+
+}
