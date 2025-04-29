@@ -1,0 +1,34 @@
+<nav class="navbar">
+    <div class="logo">Employee Manager</div>
+    
+  </nav>
+  
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Manage Your Team with Ease</h1>
+      <p>Smart tools to manage employee data, departments, and performance.</p>
+      
+      <div class="action-cards">
+        <div class="card" routerLink="employee">
+          <h3>👥 View Employees</h3>
+          <p>Browse the current list of employees.</p>
+        </div>
+  
+        <div class="card" routerLink="/add-employee">
+          <h3>➕ Add Employee</h3>
+          <p>Quickly add a new team member.</p>
+        </div>
+  
+        <div class="card" routerLink="/departments">
+          <h3>🏢 Departments</h3>
+          <p>Manage departments and teams.</p>
+        </div>
+  
+        <div class="card" routerLink="/reports">
+          <h3>📊 Reports</h3>
+          <p>Get insights with performance reports.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
